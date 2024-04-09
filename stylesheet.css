@@ -6,12 +6,11 @@ body, html {
 }
 
 #container {
-    display: flex;
-    justify-content: center; /* Centra il contenuto orizzontalmente */
-    align-items: center; /* Centra il contenuto verticalmente */
+    display: grid;
+    place-items: center; /* Centra il contenuto verticalmente ed orizzontalmente */
     width: 100%;
     height: 100%;
-    overflow: auto; /* Abilita lo scrolling del contenuto se necessario */
+    overflow: hidden; /* Evita che lo sfondo bianco si estenda oltre il contenuto */
 }
 
 canvas {
