@@ -18,6 +18,8 @@ body, html {
 canvas {
     max-width: 100%; /* Impedisce al canvas di superare i bordi del container */
     max-height: 100%; /* Impedisce al canvas di superare i bordi del container */
+    box-sizing: border-box; /* Include il padding e il bordo nel calcolo delle dimensioni */
+    border: 5px solid transparent; /* Aggiunge un bordo trasparente per evitare lo spazio bianco */
 }
 
 /* Stili per contatore bombe */
