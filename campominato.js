@@ -12,14 +12,15 @@ var bombeRimaste;
 
 function setup() {
     var minDim = min(windowWidth, windowHeight);
-    canvasWidth = minDim - 20; // Sottrai 20 per lasciare spazio ai bordi
-    canvasHeight = minDim - 20; // Sottrai 20 per lasciare spazio ai bordi
+    canvasWidth = minDim - 20;
+    canvasHeight = minDim - 20;
     var gameCanvas = createCanvas(canvasWidth, canvasHeight);
-    gameCanvas.parent('container'); // Inserisce il canvas nel container
+    gameCanvas.parent('container');
     inizializzaGriglia();
     contaBombeVicine();
     bombeRimaste = NUM_BOMBE;
 }
+
 
 
 
