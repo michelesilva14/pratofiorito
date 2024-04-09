@@ -85,6 +85,8 @@ function mousePressed() {
       if (!bandiera[x][y] && bombeRimaste > 0) {
         bandiera[x][y] = true;
         bombeRimaste--;
+        // Aggiorna il contatore delle bombe rimaste
+        document.getElementById('bombsLeft').textContent = bombeRimaste;
       }
     }
   }
