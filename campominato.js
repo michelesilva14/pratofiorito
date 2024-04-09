@@ -9,10 +9,12 @@ var vittoria = false;
 var gameFinished = false;
 var bombeRimaste;
 
+
 function setup() {
-  canvasWidth = windowWidth;
-  canvasHeight = windowHeight; // Modifica: Altezza senza sottrarre lo spazio per il contatore delle bombe
-  createCanvas(canvasWidth, canvasHeight);
+  canvasWidth = DIM * DIM_CELLA+10;
+  canvasHeight = DIM * DIM_CELLA+10;
+  var gameCanvas = createCanvas(windowWidth, windowHeight);
+  gameCanvas.id('gameCanvas'); // Aggiunta dell'id al canvas
   inizializzaGriglia();
   contaBombeVicine();
   bombeRimaste = NUM_BOMBE;
@@ -23,8 +25,8 @@ function draw() {
   fill(255);
   textAlign(RIGHT, TOP);
   textSize(20);
-  var textX = canvasWidth - 10;
-  var textY = 10;
+  var textX = 270;
+  var textY = 100;
   text("Bombe rimaste: " + bombeRimaste, textX, textY);
   mostraGriglia();
   controllaVittoria();
@@ -34,51 +36,46 @@ function draw() {
   }
 }
 
-// Aggiorna il contatore delle bombe rimaste
-function updateBombsCounter() {
-  document.getElementById('bombsCounter').textContent = bombeRimaste;
-}
-
 function opacizzaGriglia() {
   fill(0, 150);
-  rect(0, 0, canvasWidth, canvasHeight);
+  rect(0, 0, width, height);
 }
 
 function mostraPopup() {
   var popupWidth = DIM_CELLA * 7;
   var popupHeight = DIM_CELLA * 4;
-  var popupX = canvasWidth / 2 - popupWidth / 2;
-  var popupY = canvasHeight / 2 - popupHeight / 2;
+  var popupX = width / 2 - popupWidth / 2;
+  var popupY = height / 2 - popupHeight / 2;
   fill(0);
   rect(popupX, popupY, popupWidth, popupHeight);
   fill(255);
   textAlign(CENTER, CENTER);
   textSize(32);
   var messaggio = gameOver ? "Hai perso!" : "Hai vinto!";
-  text(messaggio, canvasWidth / 2, canvasHeight / 2 - 40);
-  var buttonX = canvasWidth / 2 - 50;
-  var buttonY = canvasHeight / 2 + 20;
+  text(messaggio, width / 2, height / 2 - 40);
+  var buttonX = width / 2 - 50;
+  var buttonY = height / 2 + 20;
   var buttonWidth = 100;
   var buttonHeight = 40;
   fill(178, 34, 34);
   rect(buttonX, buttonY, buttonWidth, buttonHeight);
   fill(255);
   textSize(20);
-  text("Rigioca", canvasWidth / 2, canvasHeight / 2 + 40);
+  text("Rigioca", width / 2, height / 2 + 40);
 }
 
 function mousePressed() {
-  var offsetX = (canvasWidth - DIM * DIM_CELLA) / 2;
-  var offsetY = (canvasHeight - DIM * DIM_CELLA) / 2;
+  var offsetX = (width - DIM * DIM_CELLA) / 2;
+  var offsetY = (height - DIM * DIM_CELLA) / 2;
   var x = int((mouseX - offsetX) / DIM_CELLA);
   var y = int((mouseY - offsetY) / DIM_CELLA);
   if (gameOver || vittoria) {
-    var buttonX = canvasWidth / 2 - 50;
-    var buttonY = canvasHeight / 2 + 20;
+    var buttonX = width / 2 - 50;
+    var buttonY = height / 2 + 20;
     var buttonWidth = 100;
     var buttonHeight = 40;
     if (mouseX > buttonX && mouseX < buttonX + buttonWidth &&
-      mouseY > buttonY && mouseY < buttonY + buttonHeight) {
+        mouseY > buttonY && mouseY < buttonY + buttonHeight) {
       riavviaGioco();
     }
   } else if (x >= 0 && x < DIM && y >= 0 && y < DIM) {
@@ -88,8 +85,6 @@ function mousePressed() {
       if (!bandiera[x][y] && bombeRimaste > 0) {
         bandiera[x][y] = true;
         bombeRimaste--;
-        // Aggiorna il contatore delle bombe rimaste
-        updateBombsCounter();
       }
     }
   }
@@ -175,8 +170,8 @@ function contaBombeVicine() {
 }
 
 function mostraGriglia() {
-  var offsetX = (canvasWidth - DIM * DIM_CELLA) / 2;
-  var offsetY = (canvasHeight - DIM * DIM_CELLA) / 2;
+  var offsetX = (width - DIM * DIM_CELLA) / 2;
+  var offsetY = (height - DIM * DIM_CELLA) / 2;
   for (var x = 0; x < DIM; x++) {
     for (var y = 0; y < DIM; y++) {
       var cellX = offsetX + x * DIM_CELLA;
@@ -204,30 +199,14 @@ function mostraGriglia() {
 
 function disegnaNumero(x, y, numero, cellX, cellY) {
   switch (numero) {
-    case 1:
-      fill(0, 0, 255);
-      break;
-    case 2:
-      fill(0, 255, 0);
-      break;
-    case 3:
-      fill(255, 0, 0);
-      break;
-    case 4:
-      fill(255, 255, 0);
-      break;
-    case 5:
-      fill(128, 0, 128);
-      break;
-    case 6:
-      fill(255, 165, 0);
-      break;
-    case 7:
-      fill(165, 42, 42);
-      break;
-    case 8:
-      fill(0);
-      break;
+    case 1: fill(0, 0, 255); break;
+    case 2: fill(0, 255, 0); break;
+    case 3: fill(255, 0, 0); break;
+    case 4: fill(255, 255, 0); break;
+    case 5: fill(128, 0, 128); break;
+    case 6: fill(255, 165, 0); break;
+    case 7: fill(165, 42, 42); break;
+    case 8: fill(0); break;
   }
   textAlign(CENTER, CENTER);
   textSize(15);
