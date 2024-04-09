@@ -1,4 +1,3 @@
-
 body, html {
     margin: 0;
     padding: 0;
@@ -8,22 +7,9 @@ body, html {
 }
 
 canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    display: block; /* Assicurati che il canvas sia un blocco per consentire la larghezza e l'altezza complete */
 }
 
-/* Stili per dispositivi mobili */
-@media only screen and (max-width: 600px) {
-    canvas {
-        width: 100vw;
-        height: 100vh;
-    }
-}
-
-/* Stili per contatore bombe */
 #bombsCounter {
     position: absolute;
     top: 10px; /* Regola la distanza dal top dello schermo */
@@ -33,4 +19,12 @@ canvas {
     border-radius: 5px; /* Aggiungi bordi arrotondati */
     font-size: 16px;
     font-weight: bold;
+}
+
+/* Stili per dispositivi mobili */
+@media only screen and (max-width: 600px) {
+    canvas {
+        width: 100vw;
+        height: calc(100vh - 50px); /* Considera lo spazio per il contatore delle bombe */
+    }
 }
