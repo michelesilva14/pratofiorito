@@ -8,6 +8,8 @@ body, html {
 
 canvas {
     display: block; /* Assicurati che il canvas sia un blocco per consentire la larghezza e l'altezza complete */
+    width: 100vw; /* Imposta la larghezza del canvas pari alla larghezza del viewport */
+    height: 100vh; /* Imposta l'altezza del canvas pari all'altezza del viewport */
 }
 
 #bombsCounter {
@@ -19,12 +21,4 @@ canvas {
     border-radius: 5px; /* Aggiungi bordi arrotondati */
     font-size: 16px;
     font-weight: bold;
-}
-
-/* Stili per dispositivi mobili */
-@media only screen and (max-width: 600px) {
-    canvas {
-        width: 100vw;
-        height: calc(100vh - 50px); /* Considera lo spazio per il contatore delle bombe */
-    }
 }
