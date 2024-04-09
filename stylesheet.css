@@ -6,13 +6,10 @@ body, html {
 }
 
 #container {
-    position: relative;
+    display: grid;
+    place-items: center; /* Centra il contenuto del container verticalmente ed orizzontalmente */
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     overflow: auto; /* Abilita lo scrolling del contenuto se necessario */
 }
 
@@ -23,9 +20,22 @@ canvas {
 
 /* Stili per contatore bombe */
 #bombsCounter {
+    position: absolute;
+    top: 10px;
+    right: 10px;
     background-color: rgba(255, 255, 255, 0.5);
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 16px;
     font-weight: bold;
+}
+
+/* Stili per dispositivi mobili */
+@media only screen and (max-width: 600px) {
+    canvas {
+        width: 90vw; /* Utilizza il 90% della larghezza dello schermo su dispositivi mobili */
+        height: 90vw; /* Imposta un'altezza pari alla larghezza per mantenere un rapporto di aspetto quadrato */
+        max-width: 90%; /* Limita la larghezza massima del canvas */
+        max-height: 90%; /* Limita l'altezza massima del canvas */
+    }
 }
