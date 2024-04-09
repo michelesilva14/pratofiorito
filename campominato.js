@@ -11,14 +11,16 @@ var bombeRimaste;
 
 
 function setup() {
-  canvasWidth = DIM * DIM_CELLA+10;
-  canvasHeight = DIM * DIM_CELLA+10;
-  var gameCanvas = createCanvas(windowWidth, windowHeight);
-  gameCanvas.id('gameCanvas'); // Aggiunta dell'id al canvas
-  inizializzaGriglia();
-  contaBombeVicine();
-  bombeRimaste = NUM_BOMBE;
+    var minDim = min(windowWidth, windowHeight);
+    canvasWidth = minDim - 20; // Sottrai 20 per lasciare spazio ai bordi
+    canvasHeight = minDim - 20; // Sottrai 20 per lasciare spazio ai bordi
+    var gameCanvas = createCanvas(canvasWidth, canvasHeight);
+    gameCanvas.parent('container'); // Inserisce il canvas nel container
+    inizializzaGriglia();
+    contaBombeVicine();
+    bombeRimaste = NUM_BOMBE;
 }
+
 
 function draw() {
   background(0);
