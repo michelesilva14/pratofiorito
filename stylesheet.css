@@ -6,16 +6,18 @@ body, html {
 }
 
 #container {
-    display: grid;
-    place-items: center; /* Centra il contenuto verticalmente ed orizzontalmente */
+    position: relative;
     width: 100%;
     height: 100%;
-    overflow: hidden; /* Evita che lo sfondo bianco si estenda oltre il contenuto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Evita che il contenuto oltrepassi i bordi del container */
 }
 
 canvas {
-    width: 480px; /* Imposta una larghezza fissa per il canvas */
-    height: 480px; /* Imposta un'altezza fissa per il canvas */
+    max-width: 100%; /* Impedisce al canvas di superare i bordi del container */
+    max-height: 100%; /* Impedisce al canvas di superare i bordi del container */
 }
 
 /* Stili per contatore bombe */
