@@ -11,7 +11,7 @@ var bombeRimaste;
 
 function setup() {
   canvasWidth = windowWidth;
-  canvasHeight = windowHeight - 50; // Sottrai l'altezza del contatore delle bombe
+  canvasHeight = windowHeight; // Modifica: Altezza senza sottrarre lo spazio per il contatore delle bombe
   var gameCanvas = createCanvas(canvasWidth, canvasHeight);
   gameCanvas.id('gameCanvas'); // Aggiunta dell'id al canvas
   inizializzaGriglia();
@@ -37,7 +37,7 @@ function draw() {
 
 // Aggiorna il contatore delle bombe rimaste
 function updateBombsCounter() {
-  document.getElementById('bombsLeft').textContent = bombeRimaste;
+  document.getElementById('bombsCounter').textContent = bombeRimaste;
 }
 
 function opacizzaGriglia() {
