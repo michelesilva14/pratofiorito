@@ -16,8 +16,9 @@ canvas {
 
 /* Stili per dispositivi mobili */
 @media only screen and (max-width: 600px) {
-    #container {
-        justify-content: flex-start; /* Allinea la griglia a sinistra su dispositivi mobili */
+    canvas {
+        width: 100vw;
+        height: 100vh;
     }
 }
 
