@@ -16,11 +16,11 @@ canvas {
 
 /* Stili per dispositivi mobili */
 @media only screen and (max-width: 600px) {
-    canvas {
-        width: 100vw;
-        height: 100vh;
+    #container {
+        justify-content: flex-start; /* Allinea la griglia a sinistra su dispositivi mobili */
     }
 }
+
 
 /* Stili per contatore bombe */
 #bombsCounter {
