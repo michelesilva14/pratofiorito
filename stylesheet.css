@@ -3,7 +3,7 @@ body, html {
     padding: 0;
     height: 100%;
     font-family: 'Roboto Mono', monospace;
-    background-color: #333; /* Modifica colore di sfondo */
+    background-color: #333;
 }
 
 #container {
@@ -16,8 +16,9 @@ body, html {
 
 #header {
     margin-bottom: 20px;
+    text-align: center;
 }
 
 canvas {
-    border: 2px solid #000; /* Modifica bordo del canvas */
+    border: 2px solid #000;
 }
