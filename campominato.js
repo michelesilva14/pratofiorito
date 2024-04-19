@@ -11,15 +11,14 @@ var bombeRimaste;
 var bombPlacementMode = false; // Aggiunta variabile per gestire la modalità di posizionamento bombe
 
 function setup() {
-  canvasWidth = DIM * DIM_CELLA+10;
-  canvasHeight = DIM * DIM_CELLA+10;
+  canvasWidth = DIM * DIM_CELLA + 2; // Aggiunta compensazione per il bordo
+  canvasHeight = DIM * DIM_CELLA + 2; // Aggiunta compensazione per il bordo
   var gameCanvas = createCanvas(canvasWidth, canvasHeight);
-  gameCanvas.parent('gameCanvas'); // Modifica per posizionare il canvas correttamente
+  gameCanvas.parent('gameCanvas');
   inizializzaGriglia();
   contaBombeVicine();
   bombeRimaste = NUM_BOMBE;
-  
-  // Aggiunta evento per attivare/disattivare modalità posizionamento bombe
+
   var placeBombButton = select('#placeBombButton');
   placeBombButton.mousePressed(toggleBombPlacementMode);
 }
