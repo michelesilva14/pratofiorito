@@ -9,7 +9,6 @@ var vittoria = false;
 var gameFinished = false;
 var bombeRimaste;
 
-
 function setup() {
     var minDim = min(windowWidth, windowHeight);
     canvasWidth = minDim - 20;
