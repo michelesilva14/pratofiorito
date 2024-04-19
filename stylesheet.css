@@ -38,13 +38,8 @@ canvas {
 
 /* Stili per dispositivi mobili */
 @media only screen and (max-width: 600px) {
-    canvas {
-        width: 90vw;
-        max-width: 90%;
-        height: auto; /* Imposta l'altezza del canvas in base alla larghezza su dispositivi mobili */
-    }
-
-    #bombsCounter {
-        z-index: 2; /* Assicura che il contatore delle bombe sia sopra il canvas */
+    #container {
+        justify-content: flex-start; /* Allinea la griglia a sinistra su dispositivi mobili */
     }
 }
+
