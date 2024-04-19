@@ -3,6 +3,7 @@ body, html {
     padding: 0;
     height: 100%;
     font-family: 'Roboto Mono', monospace;
+    touch-action: none; /* Disabilita il comportamento di scorrimento e zoom su dispositivi mobili */
 }
 
 #container {
@@ -13,12 +14,12 @@ body, html {
     justify-content: center;
     align-items: center;
     overflow: hidden; 
-    background-color: #000;/* Evita che il contenuto oltrepassi i bordi del container */
+    background-color: #000;
 }
 
 canvas {
-    max-width: 100%; /* Impedisce al canvas di superare i bordi del container */
-    max-height: 100%; /* Impedisce al canvas di superare i bordi del container */
+    max-width: 100%;
+    max-height: 100%;
     width: auto;
     height: auto;
 }
@@ -38,8 +39,13 @@ canvas {
 
 /* Stili per dispositivi mobili */
 @media only screen and (max-width: 600px) {
+    #container {
+        flex-direction: column; /* Allineamento verticale su dispositivi mobili */
+    }
+
     canvas {
-        width: 90vw; /* Utilizza il 90% della larghezza dello schermo su dispositivi mobili */
-        max-width: 90%; /* Limita la larghezza massima del canvas */
+        width: 90vw;
+        max-width: 90%;
+        height: auto; /* Imposta l'altezza del canvas in base alla larghezza su dispositivi mobili */
     }
 }
