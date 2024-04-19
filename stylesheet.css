@@ -27,8 +27,8 @@ canvas {
 /* Stili per contatore bombe */
 #bombsCounter {
     position: absolute;
-    top: 50px;
-    right: 50px;
+    top: 500px;
+    right: 500px;
     background-color: rgba(255, 255, 255, 0.5);
     padding: 5px 10px;
     border-radius: 5px;
