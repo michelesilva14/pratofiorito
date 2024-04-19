@@ -11,8 +11,8 @@ var bombeRimaste;
 var bombPlacementMode = false; // Aggiunta variabile per gestire la modalità di posizionamento bombe
 
 function setup() {
-  canvasWidth = DIM * DIM_CELLA + 2; // Aggiunta compensazione per il bordo
-  canvasHeight = DIM * DIM_CELLA + 2; // Aggiunta compensazione per il bordo
+  canvasWidth = DIM * DIM_CELLA + 2; // Dimensione della griglia moltiplicata per la dimensione delle celle + 2 per compensare i bordi
+  canvasHeight = DIM * DIM_CELLA + 2; // Dimensione della griglia moltiplicata per la dimensione delle celle + 2 per compensare i bordi
   var gameCanvas = createCanvas(canvasWidth, canvasHeight);
   gameCanvas.parent('gameCanvas');
   inizializzaGriglia();
@@ -22,6 +22,7 @@ function setup() {
   var placeBombButton = select('#placeBombButton');
   placeBombButton.mousePressed(toggleBombPlacementMode);
 }
+
 
 function draw() {
   background(0);
