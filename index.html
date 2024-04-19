@@ -1,21 +1,19 @@
-/<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minesweeper</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap">
 </head>
 <body>
-    <div id="container">
-        <div id="header">
-            <div id="bombsCounter">Bombe rimaste: <span id="bombsLeft">88</span></div>
-            <button id="placeBombButton">Posiziona Bandiera</button>
-        </div>
+    <div id="gameContainer">
         <canvas id="gameCanvas"></canvas>
+        <button id="placeBombButton">Posiziona Bandiera</button>
+        <span id="bombsCounter">Bombe rimaste: <span id="bombsLeft">88</span></span>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script src="campominato.js"></script>
-    <link rel="stylesheet" href="stylesheet.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap">
 </body>
 </html>
