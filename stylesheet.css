@@ -22,24 +22,28 @@ canvas {
     max-height: 100%;
     width: auto;
     height: auto;
+    position: relative; /* Cambiato in position: relative */
+    z-index: 1; /* Assicura che il canvas sia dietro il contatore delle bombe */
 }
 
 #bombsCounter {
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
+    background-color: transparent;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 16px;
     font-weight: bold;
-    color: #fff; /* Testo bianco */
+    color: #fff;
+    z-index: 2; /* Assicura che il contatore delle bombe sia sopra il canvas */
 }
 
 /* Stili per dispositivi mobili */
 @media only screen and (max-width: 600px) {
-    #container {
-        justify-content: flex-start; /* Allinea la griglia a sinistra su dispositivi mobili */
+    canvas {
+        width: 90vw;
+        max-width: 90%;
+        height: auto; /* Imposta l'altezza del canvas in base alla larghezza su dispositivi mobili */
     }
 }
-
