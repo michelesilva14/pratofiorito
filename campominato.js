@@ -20,10 +20,17 @@ function setup() {
   // Aggiungi event listener per i pulsanti
   document.getElementById('discoverButton').addEventListener('click', () => {
     currentAction = "discover";
+    document.getElementById('discoverButton').classList.add('active');
+    document.getElementById('flagButton').classList.remove('active');
   });
   document.getElementById('flagButton').addEventListener('click', () => {
     currentAction = "flag";
+    document.getElementById('flagButton').classList.add('active');
+    document.getElementById('discoverButton').classList.remove('active');
   });
+
+  // Imposta il pulsante "Scopri" come predefinito attivo
+  document.getElementById('discoverButton').classList.add('active');
 }
 
 function draw() {
