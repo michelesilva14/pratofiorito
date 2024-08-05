@@ -13,7 +13,7 @@ canvas {
     left: 0;
 }
 
-/* Stili per contatore bombe */
+/* Stili per il contatore di bombe */
 #bombsCounter {
     position: absolute;
     top: 10px;
@@ -23,4 +23,28 @@ canvas {
     border-radius: 5px;
     font-size: 16px;
     font-weight: bold;
+}
+
+/* Stili per i controlli */
+#controls {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
 }
