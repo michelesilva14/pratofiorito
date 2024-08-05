@@ -58,15 +58,15 @@ function opacizzaGriglia() {
 }
 
 function mostraPopup() {
-  var popupWidth = DIM_CELLA * 7;
-  var popupHeight = DIM_CELLA * 4;
+  var popupWidth = DIM_CELLA * 8;
+  var popupHeight = DIM_CELLA * 5;
   var popupX = width / 2 - popupWidth / 2;
   var popupY = height / 2 - popupHeight / 2;
   fill(0);
   rect(popupX, popupY, popupWidth, popupHeight);
   fill(255);
   textAlign(CENTER, CENTER);
-  textSize(32);
+  textSize(28);
   var messaggio = gameOver ? "Hai perso!" : "Hai vinto!";
   text(messaggio, width / 2, height / 2 - 40);
   var buttonX = width / 2 - 50;
