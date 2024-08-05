@@ -68,16 +68,16 @@ function mostraPopup() {
   textAlign(CENTER, CENTER);
   textSize(25);
   var messaggio = gameOver ? "Hai perso!" : "Hai vinto!";
-  text(messaggio, width / 2, height / 2 - 40);
+  text(messaggio, width / 2, height / 2 - 30);
   var buttonX = width / 2 - 50;
-  var buttonY = height / 2 + 15;
+  var buttonY = height / 2 + 20;
   var buttonWidth = 100;
   var buttonHeight = 40;
   fill(178, 34, 34);
   rect(buttonX, buttonY, buttonWidth, buttonHeight);
   fill(255);
   textSize(20);
-  text("Rigioca", width / 2, height / 2 + 40);
+  text("Rigioca", width / 2, height / 2 + 30);
 }
 
 function mousePressed() {
