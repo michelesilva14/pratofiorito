@@ -9,12 +9,10 @@ var vittoria = false;
 var gameFinished = false;
 var bombeRimaste;
 
-
 function setup() {
-  canvasWidth = DIM * DIM_CELLA+10;
-  canvasHeight = DIM * DIM_CELLA+10;
   var gameCanvas = createCanvas(windowWidth, windowHeight);
   gameCanvas.id('gameCanvas'); // Aggiunta dell'id al canvas
+  windowResized();
   inizializzaGriglia();
   contaBombeVicine();
   bombeRimaste = NUM_BOMBE;
@@ -34,6 +32,10 @@ function draw() {
     opacizzaGriglia();
     mostraPopup();
   }
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 function opacizzaGriglia() {
