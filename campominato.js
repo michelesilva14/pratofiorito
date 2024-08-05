@@ -66,11 +66,11 @@ function mostraPopup() {
   rect(popupX, popupY, popupWidth, popupHeight);
   fill(255);
   textAlign(CENTER, CENTER);
-  textSize(28);
+  textSize(25);
   var messaggio = gameOver ? "Hai perso!" : "Hai vinto!";
   text(messaggio, width / 2, height / 2 - 40);
   var buttonX = width / 2 - 50;
-  var buttonY = height / 2 + 20;
+  var buttonY = height / 2 + 15;
   var buttonWidth = 100;
   var buttonHeight = 40;
   fill(178, 34, 34);
