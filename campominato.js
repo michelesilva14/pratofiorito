@@ -8,6 +8,7 @@ var vittoria = false;
 var gameFinished = false;
 var bombeRimaste;
 var DIM_CELLA;
+var currentAction = "discover";
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -15,6 +16,14 @@ function setup() {
   inizializzaGriglia();
   contaBombeVicine();
   bombeRimaste = NUM_BOMBE;
+
+  // Aggiungi event listener per i pulsanti
+  document.getElementById('discoverButton').addEventListener('click', () => {
+    currentAction = "discover";
+  });
+  document.getElementById('flagButton').addEventListener('click', () => {
+    currentAction = "flag";
+  });
 }
 
 function draw() {
@@ -79,12 +88,15 @@ function mousePressed() {
       riavviaGioco();
     }
   } else if (x >= 0 && x < DIM && y >= 0 && y < DIM) {
-    if (mouseButton == LEFT) {
+    if (currentAction == "discover") {
       scopriCella(x, y);
-    } else if (mouseButton == RIGHT) {
+    } else if (currentAction == "flag") {
       if (!bandiera[x][y] && bombeRimaste > 0) {
         bandiera[x][y] = true;
         bombeRimaste--;
+      } else if (bandiera[x][y]) {
+        bandiera[x][y] = false;
+        bombeRimaste++;
       }
     }
   }
