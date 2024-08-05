@@ -1,6 +1,5 @@
 var DIM = 24;
 var NUM_BOMBE = 88;
-var DIM_CELLA = 30;
 var griglia = [];
 var scoperto = [];
 var bandiera = [];
@@ -8,10 +7,10 @@ var gameOver = false;
 var vittoria = false;
 var gameFinished = false;
 var bombeRimaste;
+var DIM_CELLA;
 
 function setup() {
-  var gameCanvas = createCanvas(windowWidth, windowHeight);
-  gameCanvas.id('gameCanvas'); // Aggiunta dell'id al canvas
+  createCanvas(windowWidth, windowHeight);
   windowResized();
   inizializzaGriglia();
   contaBombeVicine();
@@ -21,11 +20,9 @@ function setup() {
 function draw() {
   background(0);
   fill(255);
-  textAlign(RIGHT, TOP);
+  textAlign(LEFT, TOP);
   textSize(20);
-  var textX = 270;
-  var textY = 100;
-  text("Bombe rimaste: " + bombeRimaste, textX, textY);
+  text("Bombe rimaste: " + bombeRimaste, 10, 10);
   mostraGriglia();
   controllaVittoria();
   if (gameOver || vittoria) {
@@ -36,6 +33,7 @@ function draw() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+  DIM_CELLA = min(windowWidth, windowHeight) / DIM;
 }
 
 function opacizzaGriglia() {
