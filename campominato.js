@@ -58,8 +58,8 @@ function opacizzaGriglia() {
 }
 
 function mostraPopup() {
-  var popupWidth = DIM_CELLA * 6;
-  var popupHeight = DIM_CELLA * 3;
+  var popupWidth = DIM_CELLA * 7;
+  var popupHeight = DIM_CELLA * 4;
   var popupX = width / 2 - popupWidth / 2;
   var popupY = height / 2 - popupHeight / 2;
   fill(0);
