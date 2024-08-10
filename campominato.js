@@ -1,3 +1,5 @@
+
+
 var DIM = 24;
 var NUM_BOMBE = 88;
 var griglia = [];
@@ -34,8 +36,8 @@ function setup() {
 }
 
 function draw() {
-  background(255); // Sfondo bianco
-  fill(0); // Testo nero
+  background(0);
+  fill(255);
   textAlign(LEFT, TOP);
   textSize(20);
   text("Bombe rimaste: " + bombeRimaste, 10, 10);
@@ -85,28 +87,25 @@ function mousePressed() {
   var offsetY = (height - DIM * DIM_CELLA) / 2;
   var x = int((mouseX - offsetX) / DIM_CELLA);
   var y = int((mouseY - offsetY) / DIM_CELLA);
-
   if (gameOver || vittoria) {
     var buttonX = width / 2 - 50;
     var buttonY = height / 2 + 20;
     var buttonWidth = 100;
     var buttonHeight = 40;
     if (mouseX > buttonX && mouseX < buttonX + buttonWidth &&
-      mouseY > buttonY && mouseY < buttonY + buttonHeight) {
+        mouseY > buttonY && mouseY < buttonY + buttonHeight) {
       riavviaGioco();
     }
   } else if (x >= 0 && x < DIM && y >= 0 && y < DIM) {
     if (currentAction == "discover") {
       scopriCella(x, y);
     } else if (currentAction == "flag") {
-      if (!scoperto[x][y]) {  // Impedisci di mettere bandiere sulle celle già scoperte
-        if (!bandiera[x][y] && bombeRimaste > 0) {
-          bandiera[x][y] = true;
-          bombeRimaste--;
-        } else if (bandiera[x][y]) {
-          bandiera[x][y] = false;
-          bombeRimaste++;
-        }
+      if (!bandiera[x][y] && bombeRimaste > 0) {
+        bandiera[x][y] = true;
+        bombeRimaste--;
+      } else if (bandiera[x][y]) {
+        bandiera[x][y] = false;
+        bombeRimaste++;
       }
     }
   }
@@ -181,7 +180,7 @@ function contaBombeVicine() {
       var conta = 0;
       for (var i = -1; i <= 1; i++) {
         for (var j = -1; j <= 1; j++) {
-          if (x + i >= 0 && x < DIM && y + j >= 0 && y + j < DIM && griglia[x + i][y + j] == -1) {
+          if (x + i >= 0 && x + i < DIM && y + j >= 0 && y + j < DIM && griglia[x + i][y + j] == -1) {
             conta++;
           }
         }
@@ -198,40 +197,53 @@ function mostraGriglia() {
     for (var y = 0; y < DIM; y++) {
       var cellX = offsetX + x * DIM_CELLA;
       var cellY = offsetY + y * DIM_CELLA;
-      stroke(0); // Linea di contorno nera
-      if (scoperto[x][y] || (gameOver && griglia[x][y] == -1)) {
-        fill(200); // Celle scoperte
+      if (scoperto[x][y] || gameOver && griglia[x][y] == -1) {
+        fill(200);
       } else {
-        fill(150); // Celle non scoperte
+        fill(100);
       }
       rect(cellX, cellY, DIM_CELLA, DIM_CELLA);
-      if (scoperto[x][y]) {
-        if (griglia[x][y] != 0) {
-          disegnaNumero(x, y, griglia[x][y], cellX, cellY);
-        }
-      } else if (bandiera[x][y]) {
+      if (scoperto[x][y] && griglia[x][y] > 0) {
+        disegnaNumero(x, y, griglia[x][y], cellX, cellY);
+      }
+      if (bandiera[x][y]) {
         fill(255, 0, 0);
-        triangle(cellX + DIM_CELLA / 2, cellY + 5, cellX + DIM_CELLA - 5, cellY + DIM_CELLA / 2, cellX + 5, cellY + DIM_CELLA - 5);
+        triangle(cellX + 5, cellY + 5, cellX + DIM_CELLA / 2, cellY + 25, cellX + 25, cellY + 5);
+      }
+      if (gameOver && griglia[x][y] == -1) {
+        fill(0);
+        ellipse(cellX + DIM_CELLA / 2, cellY + DIM_CELLA / 2, DIM_CELLA / 2, DIM_CELLA / 2);
       }
     }
   }
 }
 
-function disegnaNumero(x, y, num, cellX, cellY) {
-  fill(0);
+function disegnaNumero(x, y, numero, cellX, cellY) {
+  switch (numero) {
+    case 1: fill(0, 0, 255); break;
+    case 2: fill(0, 255, 0); break;
+    case 3: fill(255, 0, 0); break;
+    case 4: fill(255, 255, 0); break;
+    case 5: fill(128, 0, 128); break;
+    case 6: fill(255, 165, 0); break;
+    case 7: fill(165, 42, 42); break;
+    case 8: fill(0); break;
+  }
   textAlign(CENTER, CENTER);
-  textSize(DIM_CELLA * 0.5);
-  text(num, cellX + DIM_CELLA / 2, cellY + DIM_CELLA / 2);
+  textSize(15);
+  text(numero.toString(), cellX + DIM_CELLA / 2, cellY + DIM_CELLA / 2);
 }
 
 function controllaVittoria() {
-  vittoria = true;
+  var scoperte = 0;
   for (var x = 0; x < DIM; x++) {
     for (var y = 0; y < DIM; y++) {
-      if (griglia[x][y] != -1 && !scoperto[x][y]) {
-        vittoria = false;
-        return;
+      if (scoperto[x][y] || (bandiera[x][y] && griglia[x][y] == -1)) {
+        scoperte++;
       }
     }
+  }
+  if (scoperte == DIM * DIM) {
+    vittoria = true;
   }
 }
