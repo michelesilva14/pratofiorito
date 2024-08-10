@@ -34,8 +34,8 @@ function setup() {
 }
 
 function draw() {
-  background(0);
-  fill(255);
+  background(255); // Sfondo bianco
+  fill(0); // Testo nero
   textAlign(LEFT, TOP);
   textSize(20);
   text("Bombe rimaste: " + bombeRimaste, 10, 10);
@@ -81,35 +81,35 @@ function mostraPopup() {
 }
 
 function mousePressed() {
-    var offsetX = (width - DIM * DIM_CELLA) / 2;
-    var offsetY = (height - DIM * DIM_CELLA) / 2;
-    var x = int((mouseX - offsetX) / DIM_CELLA);
-    var y = int((mouseY - offsetY) / DIM_CELLA);
+  var offsetX = (width - DIM * DIM_CELLA) / 2;
+  var offsetY = (height - DIM * DIM_CELLA) / 2;
+  var x = int((mouseX - offsetX) / DIM_CELLA);
+  var y = int((mouseY - offsetY) / DIM_CELLA);
 
-    if (gameOver || vittoria) {
-        var buttonX = width / 2 - 50;
-        var buttonY = height / 2 + 20;
-        var buttonWidth = 100;
-        var buttonHeight = 40;
-        if (mouseX > buttonX && mouseX < buttonX + buttonWidth &&
-            mouseY > buttonY && mouseY < buttonY + buttonHeight) {
-            riavviaGioco();
-        }
-    } else if (x >= 0 && x < DIM && y >= 0 && y < DIM) {
-        if (currentAction == "discover") {
-            scopriCella(x, y);
-        } else if (currentAction == "flag") {
-            if (!scoperto[x][y]) {  // Impedisci di mettere bandiere sulle celle già scoperte
-                if (!bandiera[x][y] && bombeRimaste > 0) {
-                    bandiera[x][y] = true;
-                    bombeRimaste--;
-                } else if (bandiera[x][y]) {
-                    bandiera[x][y] = false;
-                    bombeRimaste++;
-                }
-            }
-        }
+  if (gameOver || vittoria) {
+    var buttonX = width / 2 - 50;
+    var buttonY = height / 2 + 20;
+    var buttonWidth = 100;
+    var buttonHeight = 40;
+    if (mouseX > buttonX && mouseX < buttonX + buttonWidth &&
+      mouseY > buttonY && mouseY < buttonY + buttonHeight) {
+      riavviaGioco();
     }
+  } else if (x >= 0 && x < DIM && y >= 0 && y < DIM) {
+    if (currentAction == "discover") {
+      scopriCella(x, y);
+    } else if (currentAction == "flag") {
+      if (!scoperto[x][y]) {  // Impedisci di mettere bandiere sulle celle già scoperte
+        if (!bandiera[x][y] && bombeRimaste > 0) {
+          bandiera[x][y] = true;
+          bombeRimaste--;
+        } else if (bandiera[x][y]) {
+          bandiera[x][y] = false;
+          bombeRimaste++;
+        }
+      }
+    }
+  }
 }
 
 function riavviaGioco() {
@@ -181,7 +181,7 @@ function contaBombeVicine() {
       var conta = 0;
       for (var i = -1; i <= 1; i++) {
         for (var j = -1; j <= 1; j++) {
-          if (x + i >= 0 && x < DIM && y + j >= 0 && y < DIM && griglia[x + i][y + j] == -1) {
+          if (x + i >= 0 && x < DIM && y + j >= 0 && y + j < DIM && griglia[x + i][y + j] == -1) {
             conta++;
           }
         }
@@ -198,18 +198,20 @@ function mostraGriglia() {
     for (var y = 0; y < DIM; y++) {
       var cellX = offsetX + x * DIM_CELLA;
       var cellY = offsetY + y * DIM_CELLA;
-      if (scoperto[x][y] || gameOver && griglia[x][y] == -1) {
-        fill(200);
+      stroke(0); // Linea di contorno nera
+      if (scoperto[x][y] || (gameOver && griglia[x][y] == -1)) {
+        fill(200); // Celle scoperte
       } else {
-        fill(100);
+        fill(150); // Celle non scoperte
       }
       rect(cellX, cellY, DIM_CELLA, DIM_CELLA);
-      if (scoperto[x][y] && griglia[x][y] > 0) {
-        disegnaNumero(x, y, griglia[x][y], cellX, cellY);
-      }
-      if (bandiera[x][y]) {
+      if (scoperto[x][y]) {
+        if (griglia[x][y] != 0) {
+          disegnaNumero(x, y, griglia[x][y], cellX, cellY);
+        }
+      } else if (bandiera[x][y]) {
         fill(255, 0, 0);
-        triangle(cellX + 5, cellY + 5, cellX + DIM_CELLA - 5, cellY + DIM_CELLA / 2, cellX + 5, cellY + DIM_CELLA - 5);
+        triangle(cellX + DIM_CELLA / 2, cellY + 5, cellX + DIM_CELLA - 5, cellY + DIM_CELLA / 2, cellX + 5, cellY + DIM_CELLA - 5);
       }
     }
   }
