@@ -64,23 +64,33 @@ function mostraPopup() {
   var popupHeight = DIM_CELLA * 5;
   var popupX = width / 2 - popupWidth / 2;
   var popupY = height / 2 - popupHeight / 2;
+
+  // Disegna il rettangolo nero
   fill(0);
   rect(popupX, popupY, popupWidth, popupHeight);
+
+  // Testo centrale ("Hai perso!" o "Hai vinto!")
   fill(255);
   textAlign(CENTER, CENTER);
   textSize(25);
   var messaggio = gameOver ? "Hai perso!" : "Hai vinto!";
-  text(messaggio, width / 2, height / 2 - 30);
-  var buttonX = width / 2 - 50;
-  var buttonY = height / 2 + 20;
+  text(messaggio, popupX + popupWidth / 2, popupY + popupHeight / 3);
+
+  // Posiziona il pulsante "Rigioca" al centro del rettangolo
   var buttonWidth = 100;
   var buttonHeight = 40;
+  var buttonX = popupX + (popupWidth - buttonWidth) / 2;  // centrato orizzontalmente
+  var buttonY = popupY + (popupHeight - buttonHeight) / 1.5;  // posizionato verticalmente in basso
+
   fill(178, 34, 34);
   rect(buttonX, buttonY, buttonWidth, buttonHeight);
+
+  // Testo del pulsante "Rigioca"
   fill(255);
   textSize(20);
-  text("Rigioca", width / 2, height / 2 + 30);
+  text("Rigioca", buttonX + buttonWidth / 2, buttonY + buttonHeight / 2);
 }
+
 
 function mousePressed() {
   var offsetX = (width - DIM * DIM_CELLA) / 2;
