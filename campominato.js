@@ -97,16 +97,17 @@ function mousePressed() {
   var y = int((mouseY - offsetY) / DIM_CELLA);
 
   if (gameOver || vittoria) {
-    var popupWidth = windowWidth * 0.8;
-    var popupHeight = windowHeight * 0.4;
+    var popupWidth = windowWidth * 0.4; // 40% della larghezza dello schermo
+    var popupHeight = windowHeight * 0.15; // 15% dell'altezza dello schermo
     var popupX = (windowWidth - popupWidth) / 2;
     var popupY = (windowHeight - popupHeight) / 2;
 
-    var buttonWidth = popupWidth * 0.4;
-    var buttonHeight = popupHeight * 0.2;
+    var buttonWidth = popupWidth * 0.4; // 40% della larghezza del popup
+    var buttonHeight = popupHeight * 0.2; // 20% dell'altezza del popup
     var buttonX = popupX + (popupWidth - buttonWidth) / 2;
-    var buttonY = popupY + popupHeight - buttonHeight - windowHeight * 0.02;
+    var buttonY = popupY + popupHeight - buttonHeight - windowHeight * 0.02; // Margine inferiore di 2%
 
+    // Verifica che il clic sia all'interno delle coordinate del pulsante "Rigioca"
     if (mouseX > buttonX && mouseX < buttonX + buttonWidth &&
         mouseY > buttonY && mouseY < buttonY + buttonHeight) {
       riavviaGioco();
@@ -125,6 +126,7 @@ function mousePressed() {
     }
   }
 }
+
 
 
 
