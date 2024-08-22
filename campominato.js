@@ -75,11 +75,11 @@ function mostraPopup() {
   var messaggio = gameOver ? "Hai perso!" : "Hai vinto!";
   text(messaggio, popupX + popupWidth / 2, popupY + popupHeight / 3);
 
-  // Posiziona il pulsante "Rigioca" al centro del rettangolo
+  // Posiziona il pulsante "Rigioca" al centro del rettangolo, sotto il testo
   var buttonWidth = 100;
   var buttonHeight = 40;
-  var buttonX = popupX + (popupWidth - buttonWidth) / 2;  // centrato orizzontalmente
-  var buttonY = popupY + (popupHeight - buttonHeight) / 1.5;  // posizionato verticalmente in basso
+  var buttonX = popupX + (popupWidth - buttonWidth) / 2;
+  var buttonY = popupY + popupHeight - buttonHeight - 20; // Lascia uno spazio sotto il pulsante
 
   fill(178, 34, 34);
   rect(buttonX, buttonY, buttonWidth, buttonHeight);
@@ -90,17 +90,23 @@ function mostraPopup() {
   text("Rigioca", buttonX + buttonWidth / 2, buttonY + buttonHeight / 2);
 }
 
-
 function mousePressed() {
   var offsetX = (width - DIM * DIM_CELLA) / 2;
   var offsetY = (height - DIM * DIM_CELLA) / 2;
   var x = int((mouseX - offsetX) / DIM_CELLA);
   var y = int((mouseY - offsetY) / DIM_CELLA);
+
   if (gameOver || vittoria) {
-    var buttonX = width / 2 - 50;
-    var buttonY = height / 2 + 20;
+    var popupWidth = DIM_CELLA * 8;
+    var popupHeight = DIM_CELLA * 5;
+    var popupX = width / 2 - popupWidth / 2;
+    var popupY = height / 2 - popupHeight / 2;
+
     var buttonWidth = 100;
     var buttonHeight = 40;
+    var buttonX = popupX + (popupWidth - buttonWidth) / 2;
+    var buttonY = popupY + popupHeight - buttonHeight - 20;
+
     if (mouseX > buttonX && mouseX < buttonX + buttonWidth &&
         mouseY > buttonY && mouseY < buttonY + buttonHeight) {
       riavviaGioco();
@@ -119,6 +125,7 @@ function mousePressed() {
     }
   }
 }
+
 
 function riavviaGioco() {
   gameFinished = false;
