@@ -59,8 +59,8 @@ function opacizzaGriglia() {
 }
 
 function mostraPopup() {
-  var popupWidth = windowWidth * 0.8; // 80% della larghezza dello schermo
-  var popupHeight = windowHeight * 0.4; // 40% dell'altezza dello schermo
+  var popupWidth = windowWidth * 0.6; // 80% della larghezza dello schermo
+  var popupHeight = windowHeight * 0.3; // 40% dell'altezza dello schermo
   var popupX = (windowWidth - popupWidth) / 2;
   var popupY = (windowHeight - popupHeight) / 2;
 
@@ -76,8 +76,8 @@ function mostraPopup() {
   text(messaggio, popupX + popupWidth / 2, popupY + popupHeight / 3);
 
   // Dimensioni e posizione del pulsante "Rigioca"
-  var buttonWidth = popupWidth * 0.4; // 40% della larghezza del popup
-  var buttonHeight = popupHeight * 0.2; // 20% dell'altezza del popup
+  var buttonWidth = popupWidth * 0.4; // 30% della larghezza del popup
+  var buttonHeight = popupHeight * 0.2; // 15% dell'altezza del popup
   var buttonX = popupX + (popupWidth - buttonWidth) / 2;
   var buttonY = popupY + popupHeight - buttonHeight - windowHeight * 0.02; // Margine inferiore di 2% dell'altezza dello schermo
 
