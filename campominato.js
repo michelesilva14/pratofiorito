@@ -59,8 +59,8 @@ function opacizzaGriglia() {
 }
 
 function mostraPopup() {
-  var popupWidth = windowWidth * 0.6; // 80% della larghezza dello schermo
-  var popupHeight = windowHeight * 0.3; // 40% dell'altezza dello schermo
+  var popupWidth = windowWidth * 0.4; // 80% della larghezza dello schermo
+  var popupHeight = windowHeight * 0.15; // 40% dell'altezza dello schermo
   var popupX = (windowWidth - popupWidth) / 2;
   var popupY = (windowHeight - popupHeight) / 2;
 
