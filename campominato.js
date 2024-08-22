@@ -1,6 +1,4 @@
 
-
-
 var DIM = 24;
 var NUM_BOMBE = 88;
 var griglia = [];
